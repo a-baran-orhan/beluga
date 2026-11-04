@@ -50,6 +50,7 @@
       "typedRoutes": false
     },
     "plugins": [
+      "./plugins/no-push-entitlement",
       "expo-router",
       "expo-image",
       "expo-secure-store",

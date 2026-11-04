@@ -173,8 +173,13 @@ upload; check it holds before a public App Store release.
 
 Push (Beluga Push relay; `lib/notifications.ts` keeps the choices and makes the Android channels)
 isn't on either platform yet. On iPhone it needs an APNs key (Certificates, Identifiers & Profiles
-› Keys › Apple Push Notifications service) on the relay; the app already has the Push
-Notifications entitlement (expo-notifications), so no new capability is needed.
+› Keys › Apple Push Notifications service) on the relay, a paid team, and the Push Notifications
+entitlement back: `plugins/no-push-entitlement.js` takes it out for now, so a free team can sign.
+
+**A free (personal) Apple team** signs the app for your own iPhone but not for TestFlight (that
+needs the Apple Developer Program). The app it installs runs for 7 days, then wants a new build
+from Xcode. The iPhone needs Developer Mode on (Settings › Privacy & Security), and the first
+time, Settings › General › VPN & Device Management › trust your Apple ID.
 
 ## Not yet
 

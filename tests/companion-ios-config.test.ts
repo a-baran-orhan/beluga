@@ -54,6 +54,13 @@ describe('iOS app config', () => {
     expect(plugins).toContain('photosPermission');
   });
 
+  it('drops the push entitlement after expo-notifications adds it, so a free team can sign', () => {
+    const plugins = (config.plugins as unknown[]).map((p) => (Array.isArray(p) ? p[0] : p));
+    // Expo runs mods last-added first: the first plugin's runs after expo-notifications'.
+    expect(plugins[0]).toBe('./plugins/no-push-entitlement');
+    expect(plugins).toContain('expo-notifications');
+  });
+
   it('has an opaque 1024 icon, as App Store Connect wants', () => {
     const png = readFileSync(path.join(pkg, config.ios.icon as string));
     expect(png.readUInt32BE(16)).toBe(1024);
